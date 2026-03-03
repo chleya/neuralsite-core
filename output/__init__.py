@@ -3,7 +3,13 @@
 成果输出模块
 """
 
-from .generator import ModelGenerator, CrossSectionGenerator, EarthworkCalculator
+# 避免循环导入，直接从generator导入
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-
-__all__ = ['ModelGenerator', 'CrossSectionGenerator', 'EarthworkCalculator']
+try:
+    from output.model.generator import ModelGenerator, CrossSectionGenerator, EarthworkCalculator
+    __all__ = ['ModelGenerator', 'CrossSectionGenerator', 'EarthworkCalculator']
+except:
+    __all__ = []

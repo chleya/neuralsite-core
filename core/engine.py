@@ -6,6 +6,12 @@ NeuralSite Core Engine
 
 import math
 import re
+import os
+import sys
+
+# 添加core目录到路径
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 from typing import Dict, List, Tuple, Optional
 from dataclasses import dataclass
 
