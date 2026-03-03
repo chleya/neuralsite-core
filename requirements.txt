@@ -1,0 +1,7 @@
+# NeuralSite Core
+
+fastapi>=0.100
+uvicorn>=0.23
+sqlalchemy>=2.0
+pydantic>=2.0
+python-multipart>=0.0.6
