@@ -11,6 +11,7 @@ from datetime import datetime
 from api.v1.routes import calculate
 from api.v1.routes.knowledge import router as knowledge_router
 from api.v1.routes.lod import router as lod_router
+from api.v1.routes.engineering import router as engineering_router
 
 
 # 创建应用
@@ -36,6 +37,7 @@ app.add_middleware(
 app.include_router(calculate.router)
 app.include_router(knowledge_router)
 app.include_router(lod_router)
+app.include_router(engineering_router)
 
 
 @app.get("/")
