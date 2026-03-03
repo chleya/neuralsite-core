@@ -20,7 +20,7 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
-# CORS
+# CORS - 允许所有来源
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
