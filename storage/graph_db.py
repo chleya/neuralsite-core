@@ -4,11 +4,14 @@ Neo4j图数据库
 """
 
 import os
-from dotenv import load_dotenv
 from typing import Dict, List, Optional, Any
 
 # 加载环境变量
-load_dotenv()
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except:
+    pass
 
 try:
     from neo4j import GraphDatabase
@@ -16,6 +19,15 @@ try:
 except ImportError:
     NEO4J_AVAILABLE = False
     print("Warning: neo4j driver not installed")
+
+
+def get_neo4j_config():
+    """获取Neo4j配置"""
+    return {
+        "uri": os.getenv("NEO4J_URI", "bolt://localhost:7687"),
+        "user": os.getenv("NEO4J_USER", "neo4j"),
+        "password": os.getenv("NEO4J_PASSWORD", "password")
+    }
 
 
 class GraphDatabase:
@@ -28,9 +40,10 @@ class GraphDatabase:
     
     def _connect(self):
         """连接数据库"""
-        uri = os.getenv("NEO4J_URI", "bolt://localhost:7687")
-        user = os.getenv("NEO4J_USER", "neo4j")
-        password = os.getenv("NEO4J_PASSWORD", "password")
+        config = get_neo4j_config()
+        uri = config["uri"]
+        user = config["user"]
+        password = config["password"]
         
         try:
             self.driver = GraphDatabase.driver(uri, auth=(user, password))
