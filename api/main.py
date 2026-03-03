@@ -14,6 +14,7 @@ from api.v1.routes.lod import router as lod_router
 from api.v1.routes.engineering import router as engineering_router
 from api.v1.routes.import_routes import router as import_router
 from api.v1.routes.workflow import router as workflow_router
+from api.v1.routes.advisor import router as advisor_router
 
 
 # 创建应用
@@ -42,6 +43,7 @@ app.include_router(lod_router)
 app.include_router(engineering_router)
 app.include_router(import_router)
 app.include_router(workflow_router)
+app.include_router(advisor_router)
 
 
 @app.get("/")

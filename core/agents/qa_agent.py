@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 """
 Auto-QA Agent
-自动质检工作流：导入 -> 验证 -> 碰撞检测 -> 生成报告
+自动质检工作流：导入 -> 验证 -> 碰撞检测 -> 生成报告 + 解决方案
 """
 
 from dataclasses import dataclass, field
 from typing import List, Dict, Optional, Any
 from enum import Enum
 import json
+
+# 导入解决方案查询
+from core.knowledge_graph.query_engine import get_solution
 
 
 class IssueSeverity(Enum):
@@ -27,6 +30,9 @@ class ValidationIssue:
     issue_type: str       # 问题类型
     description: str      # 描述
     recommendation: str   # 整改建议
+    solution: str = ""    # 解决方案 (来自知识图谱)
+    standard: str = ""    # 引用规范
+    measures: List[str] = field(default_factory=list)  # 具体措施
     related_components: List[str] = field(default_factory=list)
 
 
