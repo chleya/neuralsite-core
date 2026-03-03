@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
 
 from api.v1.routes import calculate
+from api.v1.routes.knowledge import router as knowledge_router
 
 
 # 创建应用
@@ -32,6 +33,7 @@ app.add_middleware(
 
 # 注册路由
 app.include_router(calculate.router)
+app.include_router(knowledge_router)
 
 
 @app.get("/")

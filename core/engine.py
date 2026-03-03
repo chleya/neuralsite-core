@@ -33,7 +33,7 @@ class Coordinate3D:
     
     def to_dict(self) -> Dict:
         return {
-            "station": f"K{self.station//1000}+{self.station%1000:03d}",
+            "station": f"K{int(self.station)//1000}+{int(self.station)%1000:03d}",
             "station_m": self.station,
             "x": round(self.x, 3),
             "y": round(self.y, 3),
